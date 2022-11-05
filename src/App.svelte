@@ -1,16 +1,25 @@
 <script>
-  let nombre = "Miguel";
-  import Boton from "./components/Boton.svelte";
+  import { Router, Link, Route } from "svelte-routing";
+
+  import Login from "./views/Login.svelte";
+  import About from "./views/About.svelte";
+  import Home from "./views/Home.svelte";
+
+  export let url = "";
 </script>
 
 <main>
-  <input type="text" bind:value={nombre} />
-  <h1>Hola, {nombre}!</h1>
-  <Boton />
+  <Router {url}>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/login">Login</Link>
+    </nav>
+    <div>
+      <Route path="login" component={Login} />
+      <Route path="/"><Home /></Route>
+    </div>
+  </Router>
 </main>
 
 <style>
-  h1 {
-    color: green;
-  }
 </style>
